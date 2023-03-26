@@ -15,7 +15,7 @@
 ToDo List is a simple web application that allows you to keep track of your daily tasks. It's designed to be easy to use and intuitive, so you can start managing your tasks right away.
 
 ## Live Demo
-To see the live demo of this website, please visit: https://dgmcorporation-rudydev.
+To see the live demo of this website, please visit: todolsit-rudydev.netlify.app.
 
 ## Features
 
