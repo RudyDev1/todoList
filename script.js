@@ -30,6 +30,8 @@ const prepareDOMEvents = () => {
 	popupCloseBtn.addEventListener('click', closePopup)
 	popupAddBtn.addEventListener('click', changeTodoText)
     todoInput.addEventListener('keyup', enterKeyCheck)
+    popupInput.addEventListener('keyup', enterKeyCheckPopup)
+	
 }
 
 const addNewTodo = () => {
@@ -116,6 +118,12 @@ const deleteTodo = e => {
 const enterKeyCheck = (e) => {
     if(e.key === 'Enter'){
         addNewTodo()
+    }
+}
+
+const enterKeyCheckPopup = (e) => {
+    if(e.key === 'Enter'){
+        changeTodoText()
     }
 }
 
