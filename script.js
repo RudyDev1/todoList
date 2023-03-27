@@ -81,7 +81,7 @@ const createToolsArea = () => {
 const checkClick = e => {
 	if (e.target.matches('.complete')) {
 		e.target.closest('li').classList.toggle('completed') // closest pokazuje swoje najbliższe li
-		e.target.classList.toggle('completed')
+
 	} else if (e.target.matches('.edit')) {
 		editToDo(e)
 	} else if (e.target.matches('.delete')) {
@@ -93,7 +93,6 @@ const editToDo = e => {
 	todoToEdit = e.target.closest('li')
 
 	popupInput.value = todoToEdit.firstChild.textContent
-	// todoToEdit.firstChild
 	popup.style.display = 'flex'
 }
 
@@ -113,14 +112,12 @@ const changeTodoText = () => {
 }
 
 const deleteTodo = e => {
-	// todoToDelete = e.target.closest('li')
-	// todoToDelete.remove()
 	e.target.closest('li').remove()
 
 	const allTodos = ulList.querySelectorAll('li')
 
 	closePopup()
-	
+
 	if (allTodos.length === 0) {
 		errorInfo.textContent = 'Brak zadań na liście.'
 	}
@@ -139,25 +136,33 @@ const enterKeyCheckPopup = e => {
 }
 
 const sort = () => {
-		const allTodos = ulList.querySelectorAll('li')
+	const allTodos = ulList.querySelectorAll('li')
+	let check = false
 
 	allTodos.forEach(todo => {
 		if (todo.matches('.completed')) {
-			todo.classList.toggle('display-none')
-			console.log(todo);
-
-			if (sortBtn.textContent === 'Pokaż') {
-				sortBtn.textContent = 'Ukryj'
-			} else {
-				sortBtn.textContent = 'Pokaż'
+			check = true
+			if(sortBtn.textContent === 'Pokaż'){
+				todo.style.display = ''
 			}
-			showInfoSort()
+			else{
+				todo.style.display = 'none'
+			}
+		} else if(todo.matches(!'.completed')){
+			check = false
 		}
-		else[
-			infoSortText.textContent = 'Brak wykonanych zadań na liście'
-		]
-
 	})
+	if(check === true){
+		if (sortBtn.textContent === 'Pokaż') {
+			sortBtn.textContent = 'Ukryj'
+		} else {
+			sortBtn.textContent = 'Pokaż'
+		}
+		showInfoSort()
+	}
+	else{
+		infoSortText.textContent = 'Brak wykonanych zadań na liście'
+	}
 }
 
 const showInfoSort = () => {
