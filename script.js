@@ -63,6 +63,10 @@ const createToolsArea = () => {
 	toolsPanel.classList.add('tools')
 	newTodo.append(toolsPanel)
 
+	const priorityBtn = document.createElement('button')
+	priorityBtn.classList.add('priority')
+	priorityBtn.innerHTML = '<i class="fa-solid fa-exclamation"></i>'
+
 	const completeBtn = document.createElement('button')
 	completeBtn.classList.add('complete')
 	completeBtn.innerHTML = '<i class="fas fa-check"></i>'
@@ -75,17 +79,20 @@ const createToolsArea = () => {
 	deleteBtn.classList.add('delete')
 	deleteBtn.innerHTML = '<i class="fas fa-times"></i>'
 
-	toolsPanel.append(completeBtn, editBtn, deleteBtn)
+	toolsPanel.append(priorityBtn, completeBtn, editBtn, deleteBtn)
 }
 
 const checkClick = e => {
 	if (e.target.matches('.complete')) {
 		e.target.closest('li').classList.toggle('completed') // closest pokazuje swoje najbliższe li
-
+		e.target.closest('li').classList.remove('prioritized')
 	} else if (e.target.matches('.edit')) {
 		editToDo(e)
 	} else if (e.target.matches('.delete')) {
 		deleteTodo(e)
+	} else if (e.target.matches('.priority')) {
+		e.target.closest('li').classList.toggle('prioritized')
+		e.target.closest('li').classList.remove('completed')
 	}
 }
 
@@ -142,25 +149,23 @@ const sort = () => {
 	allTodos.forEach(todo => {
 		if (todo.matches('.completed')) {
 			check = true
-			if(sortBtn.textContent === 'Pokaż'){
+			if (sortBtn.textContent === 'Pokaż') {
 				todo.style.display = ''
-			}
-			else{
+			} else {
 				todo.style.display = 'none'
 			}
-		} else if(todo.matches(!'.completed')){
+		} else if (todo.matches(!'.completed')) {
 			check = false
 		}
 	})
-	if(check === true){
+	if (check === true) {
 		if (sortBtn.textContent === 'Pokaż') {
 			sortBtn.textContent = 'Ukryj'
 		} else {
 			sortBtn.textContent = 'Pokaż'
 		}
 		showInfoSort()
-	}
-	else{
+	} else {
 		infoSortText.textContent = 'Brak wykonanych zadań na liście'
 	}
 }
@@ -171,11 +176,14 @@ const showInfoSort = () => {
 	} else {
 		infoSortText.textContent = 'Ukryj wykonane zadania'
 	}
-	infoSort.style.display = 'flex'
+	// infoSort.style.display = 'flex'
+	infoSort.classList.add('display')
 }
 
 const hideInfoSort = () => {
-	infoSort.style.display = 'none'
+	// infoSort.style.display = 'none'
+	
+	infoSort.classList.remove('display')
 }
 
 document.addEventListener('DOMContentLoaded', main)
