@@ -23,7 +23,8 @@ To see the live demo of this website, please visit: https://todolist-rudydev.net
 - Mark tasks as completed
 - Delete tasks
 - Edit tasks
-- Responsive design for use on desktop or mobile devices
+- Mark tasks as priorities
+- Hide tasks completed
 
 ## Technologies Used
 This website was built using the following technologies:
