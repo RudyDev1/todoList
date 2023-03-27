@@ -176,13 +176,10 @@ const showInfoSort = () => {
 	} else {
 		infoSortText.textContent = 'Ukryj wykonane zadania'
 	}
-	// infoSort.style.display = 'flex'
 	infoSort.classList.add('display')
 }
 
 const hideInfoSort = () => {
-	// infoSort.style.display = 'none'
-	
 	infoSort.classList.remove('display')
 }
 
