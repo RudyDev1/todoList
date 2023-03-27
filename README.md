@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 # ToDo List
 
-## Spis treści
+## Menu
 - [Project description](#project-description)
 - [Live Demo](#live-demo)
 - [Features](#features)
