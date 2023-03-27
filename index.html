@@ -20,21 +20,25 @@
         <div class="header">
             <h1>ToDo List</h1>
             <input type="text" class="todo-input" placeholder="Wpisz treść zadania...">
-            <button class="btn-add">Dodaj</button>
+            <div class="todo-buttons">
+                <button class="btn btn-add">Dodaj</button>
+                <button class="btn btn-sort">Ukryj</button>
+            </div>
         </div>
         <div class="todolist">
             <h3>Lista zadań:</h3>
             <p class="error-info">Brak zadań na liście.</p>
             <ul>
-                <!-- <li data-id='test1'>Wypić kawę
+                <li data-id='test1'>Wypić kawę
                     <div class="tools">
                         <button class="complete"><i class="fas fa-check"></i></button>
                         <button class="edit">EDIT</button>
                         <button class="delete"><i class="fas fa-times"></i></button>
                     </div>
-                </li> -->
+                </li>
             </ul>
         </div>
+
     </div>
 
     <div class="popup">
@@ -42,9 +46,16 @@
         <div class="popup-body">
             <p class="popup-info"></p>
             <input type="text" class="popup-input" placeholder="Wprowadź nową treść zadania...">
-            <button class="popup-btn accept">Zatwierdź</button>
-            <button class="popup-btn cancel">Anuluj</button>
+            <div class="popup-buttons">
+                <button class="popup-btn accept">Zatwierdź</button>
+                <button class="popup-btn cancel">Anuluj</button>
+            </div>
+
         </div>
+    </div>
+
+    <div class="info-sort">
+        <p>Ukryj lub pokaż wykonane zadania</p>
     </div>
 
     <script src="script.js"></script>

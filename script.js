@@ -6,6 +6,8 @@ let newTodo //nowy task, nowe li
 
 let popup, popupInfo, todoToEdit, popupInput, popupAddBtn, popupCloseBtn
 
+let sortBtn
+
 const main = () => {
 	prepareDOMElements()
 	prepareDOMEvents()
@@ -22,6 +24,10 @@ const prepareDOMElements = () => {
 	popupInput = document.querySelector('.popup-input')
 	popupAddBtn = document.querySelector('.accept')
 	popupCloseBtn = document.querySelector('.cancel')
+
+	sortBtn = document.querySelector('.btn-sort')
+	infoSort = document.querySelector('.info-sort')
+	infoSortText = document.querySelector('.info-sort p')
 }
 
 const prepareDOMEvents = () => {
@@ -29,9 +35,12 @@ const prepareDOMEvents = () => {
 	ulList.addEventListener('click', checkClick)
 	popupCloseBtn.addEventListener('click', closePopup)
 	popupAddBtn.addEventListener('click', changeTodoText)
-    todoInput.addEventListener('keyup', enterKeyCheck)
-    popupInput.addEventListener('keyup', enterKeyCheckPopup)
-	
+	todoInput.addEventListener('keyup', enterKeyCheck)
+	popupInput.addEventListener('keyup', enterKeyCheckPopup)
+	sortBtn.addEventListener('click', sort)
+
+	sortBtn.addEventListener('mouseenter', showInfoSort)
+	sortBtn.addEventListener('mouseleave', hideInfoSort)
 }
 
 const addNewTodo = () => {
@@ -104,29 +113,64 @@ const changeTodoText = () => {
 }
 
 const deleteTodo = e => {
-    // todoToDelete = e.target.closest('li')
-    // todoToDelete.remove()
-    e.target.closest('li').remove()
+	// todoToDelete = e.target.closest('li')
+	// todoToDelete.remove()
+	e.target.closest('li').remove()
 
-    const allTodos = ulList.querySelectorAll('li')
+	const allTodos = ulList.querySelectorAll('li')
 
-    if(allTodos.length === 0){
-        errorInfo.textContent = 'Brak zadań na liście.'
-    }
+	closePopup()
+	
+	if (allTodos.length === 0) {
+		errorInfo.textContent = 'Brak zadań na liście.'
+	}
 }
 
-const enterKeyCheck = (e) => {
-    if(e.key === 'Enter'){
-        addNewTodo()
-    }
+const enterKeyCheck = e => {
+	if (e.key === 'Enter') {
+		addNewTodo()
+	}
 }
 
-const enterKeyCheckPopup = (e) => {
-    if(e.key === 'Enter'){
-        changeTodoText()
-    }
+const enterKeyCheckPopup = e => {
+	if (e.key === 'Enter') {
+		changeTodoText()
+	}
 }
 
+const sort = () => {
+		const allTodos = ulList.querySelectorAll('li')
 
+	allTodos.forEach(todo => {
+		if (todo.matches('.completed')) {
+			todo.classList.toggle('display-none')
+			console.log(todo);
+
+			if (sortBtn.textContent === 'Pokaż') {
+				sortBtn.textContent = 'Ukryj'
+			} else {
+				sortBtn.textContent = 'Pokaż'
+			}
+			showInfoSort()
+		}
+		else[
+			infoSortText.textContent = 'Brak wykonanych zadań na liście'
+		]
+
+	})
+}
+
+const showInfoSort = () => {
+	if (sortBtn.textContent === 'Pokaż') {
+		infoSortText.textContent = 'Pokaż wykonane zadania'
+	} else {
+		infoSortText.textContent = 'Ukryj wykonane zadania'
+	}
+	infoSort.style.display = 'flex'
+}
+
+const hideInfoSort = () => {
+	infoSort.style.display = 'none'
+}
 
 document.addEventListener('DOMContentLoaded', main)
