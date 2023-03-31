@@ -65,7 +65,7 @@ const createToolsArea = () => {
 
 	const priorityBtn = document.createElement('button')
 	priorityBtn.classList.add('priority')
-	priorityBtn.innerHTML = '<i class="fa-solid fa-exclamation"></i>'
+	priorityBtn.textContent = '!'
 
 	const completeBtn = document.createElement('button')
 	completeBtn.classList.add('complete')
